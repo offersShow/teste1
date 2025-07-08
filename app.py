@@ -84,7 +84,7 @@ def salvar_no_cache(termo, resultados):
         with pd.ExcelWriter(ARQUIVO_CACHE, engine="openpyxl") as writer:
             df_novo.to_excel(writer, sheet_name=termo, index=False)
 
-@app.route("/")
+@front.route("/")
 def home():
     return "Olá Render!"
 
@@ -178,13 +178,13 @@ def atualizar_promo_cache():
 threading.Thread(target=atualizar_promo_cache, daemon=True).start()
 
 # ─── Rotas Flask ──────────────────────────────────────────────────────────
-@app.route('/')
+@front.route('/')
 def index():
     with cache_lock:
         data = promo_cache.copy()
     return render_template('index.html', default_results=data)
 
-@app.route('/buscar', methods=['POST'])
+@front.route('/buscar', methods=['POST'])
 def rota_buscar():
     termo = request.json.get('termo', '').strip()
 
@@ -204,12 +204,12 @@ def rota_buscar():
 
     return jsonify(resultados)
 
-@app.route("/promocoes")
+@front.route("/promocoes")
 def promocoes():
     with cache_lock:
         return jsonify(promo_cache)
 
-@app.route('/ultima_busca')
+@front.route('/ultima_busca')
 def ultima_busca():
     termo = session.get('ultimo_termo', {})
     if not termo:
