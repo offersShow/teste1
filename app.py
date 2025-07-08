@@ -15,8 +15,8 @@ import difflib
 from security_config import configurar_talisman, configurar_limiter, verificar_token, sanitizar
 from flask_cors import CORS
 
-front = Flask("front")
-
+front = Flask("front", template_folder=".")
+front.secret_key = os.environ.get("SECRET_KEY", "chave-padrao-segura")
 ARQUIVO_CACHE = "cache_buscas.xlsx"
 
 def limpar_nome_sheet(nome):
