@@ -88,13 +88,10 @@ def salvar_no_cache(termo, resultados):
 def home():
     return "Olá Render!"
 
-CORS(app)
+CORS("front")
 # Aplica headers de segurança e limitador
-configurar_talisman(app)
-limiter = configurar_limiter(app)
-
-
-app.secret_key = "chave-secreta-segura"  # troque por uma mais segura em produção
+configurar_talisman("front")
+limiter = configurar_limiter("front")
 
 # ─── Configurações do ChromeDriver ────────────────────────────────────────
 chrome_options = Options()
