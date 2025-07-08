@@ -38,7 +38,7 @@ def iniciar_chrome():
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--window-size=1920,1080")
     chrome_options.add_argument("--log-level=3")
-    # chrome_options.add_argument("--headless")  # descomente se quiser headless
+    chrome_options.add_argument("--headless")  # descomente se quiser headless
     return webdriver.Chrome(options=chrome_options)
 
 def esperar_codigo_2fa(timeout=180):
@@ -399,4 +399,5 @@ if __name__ == "__main__":
     print("Iniciando backend...")
     login()
     print("Login finalizado, iniciando Flask app...")
-    app.run(host="127.0.0.1", port=5001)
+    port = int(os.environ.get("PORT", 5001))
+    app.run(host="0.0.0.0", port=port)
