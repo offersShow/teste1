@@ -27,8 +27,8 @@ SENHA = os.getenv("SENHA")
 ##TOKEN = "meu-token-secreto-123"
 autenticado = False  # Só vira True quando login for válido
 
-configurar_talisman(app)
-configurar_limiter(app)
+configurar_talisman(backend)
+configurar_limiter(backend)
 
 driver = None
 
