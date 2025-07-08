@@ -3,7 +3,7 @@ services:
     name: flask-backend
     env: python
     buildCommand: ""
-    startCommand: gunicorn app:app
+    startCommand: python app.py
     plan: free
     envVars:
       - key: FLASK_ENV
