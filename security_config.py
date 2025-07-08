@@ -56,7 +56,7 @@ def configurar_talisman(app):
     Talisman(app, content_security_policy=csp)
 
 # Conexão com Redis
-redis_connection = Redis(host="https://0.0.0.0", port=6379)
+redis_connection = Redis(host="localhost", port=6379)
 
 # === 🚦 Rate limiting ===
 limiter = Limiter(
