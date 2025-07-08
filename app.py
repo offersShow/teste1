@@ -107,7 +107,7 @@ start = time.time()
 
 while True:
     try:
-        r = requests.get("https://localhost:5001/ping", timeout=1)
+        r = requests.get("https://0.0.0.0:5001/ping", timeout=1)
         if r.status_code == 200:
             print("[✅] Backend está pronto!")
             break
@@ -156,7 +156,7 @@ cache_lock = threading.Lock()
 def buscar_amazon_autenticado(termo):
     try:
         resp = requests.post(
-            "https://localhost:5001/buscar_autenticado",
+            "https://0.0.0.0:5001/buscar_autenticado",
             json={"termo": termo},
             ##headers={"Authorization": "Bearer meu-token-secreto-123"}
         )
