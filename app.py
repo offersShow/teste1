@@ -255,4 +255,4 @@ def ultima_busca():
     return jsonify({"termo": termo, "dados": cache or []})
     
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False, ssl_context=('cert.pem', 'key.pem'))
+    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
