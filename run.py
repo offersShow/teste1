@@ -4,12 +4,12 @@ from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from werkzeug.serving import run_simple
 
 # Aqui você importa os Flask‑apps **sem** o “.py” no nome:
-from app import app as front_app
-from app_login_backend import app as back_app
+from app import front as front_app
+from app_login_backend import backend as backend_app
 
 # Monta o back_app sob o prefixo /api, mantendo o front_app na raiz
 application = DispatcherMiddleware(front_app, {
-    '/api': back_app
+    '/api': backend_app
 })
 
 if __name__ == "__main__":
