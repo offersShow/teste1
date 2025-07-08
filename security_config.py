@@ -11,25 +11,44 @@ from redis import Redis
 SECRET_KEY = os.getenv("SECRET_KEY", "chave-secreta-segura")
 TOKEN_TTL_SECONDS = 3600  # 1 hora
 
-SELF = [
-    "'self'",
-    "https://offersshow.github.io/teste1/",
-]
+SELF = ["'self'"]
+
+# Substitua pelo domínio correto do seu backend no Render
+RENDER_URL = "https://meu-backend-flask-posa.onrender.com"
+
+# Substitua pelo domínio onde está hospedado seu frontend (GitHub Pages)
+GITHUB_PAGES_URL = "https://offersshow.github.io/teste1/"
+
 csp = {
     "default-src": SELF,
     "connect-src": SELF + [
-        "https://meu-backend-flask-posa.onrender.com"
+        RENDER_URL,
+        GITHUB_PAGES_URL,
+        "https://gc.kis.v2.scr.kaspersky-labs.com",
+        "wss://gc.kis.v2.scr.kaspersky-labs.com"
     ],
-    "style-src": SELF,
-    "style-src-elem": SELF,
-    "font-src": SELF,
+    "style-src": SELF + [
+        "https://fonts.googleapis.com",
+        "https://gc.kis.v2.scr.kaspersky-labs.com"
+    ],
+    "style-src-elem": SELF + [
+        "https://fonts.googleapis.com"
+    ],
+    "font-src": SELF + [
+        "https://fonts.gstatic.com"
+    ],
     "img-src": SELF + [
-        "data:",  # para favicons ou imagens base64
-        # Adicione aqui os domínios de imagem que você usa
+        "data:",
         "https://images-na.ssl-images-amazon.com",
-        "https://m.media-amazon.com"
+        "https://m.media-amazon.com",
+        "https://gc.kis.v2.scr.kaspersky-labs.com"
     ],
-    "script-src": SELF
+    "script-src": SELF + [
+        "https://gc.kis.v2.scr.kaspersky-labs.com"
+    ],
+    "frame-src": SELF + [
+        "https://gc.kis.v2.scr.kaspersky-labs.com"
+    ]
 }
 
 # === 🛡️ Talisman: headers de segurança HTTP ===
