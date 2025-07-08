@@ -107,7 +107,7 @@ start = time.time()
 
 while True:
     try:
-        r = requests.get("https://localhost:5001/ping", timeout=1, verify=False)
+        r = requests.get("https://localhost:5001/ping", timeout=1)
         if r.status_code == 200:
             print("[✅] Backend está pronto!")
             break
@@ -156,7 +156,7 @@ cache_lock = threading.Lock()
 def buscar_amazon_autenticado(termo):
     try:
         resp = requests.post(
-            "https://localhost:5001/buscar_autenticado", verify=False,
+            "https://localhost:5001/buscar_autenticado",
             json={"termo": termo},
             ##headers={"Authorization": "Bearer meu-token-secreto-123"}
         )
@@ -255,4 +255,5 @@ def ultima_busca():
     return jsonify({"termo": termo, "dados": cache or []})
     
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True, use_reloader=False)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
