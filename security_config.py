@@ -11,7 +11,10 @@ from redis import Redis
 SECRET_KEY = os.getenv("SECRET_KEY", "chave-secreta-segura")
 TOKEN_TTL_SECONDS = 3600  # 1 hora
 
-SELF = ["'self'"]
+SELF = [
+    "'self'",
+    "https://offersshow.github.io/teste1/",
+]
 csp = {
     "default-src": SELF,
     "connect-src": SELF + [
