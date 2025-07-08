@@ -1,0 +1,741 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('/static/fonts/Inter-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/static/fonts/Inter-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Reset básico */
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #0d0f1a; /* azul escuro moderno */
+  color: #fff;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  gap: 0.3rem;
+  position: relative;
+}
+
+.cart {
+  display: inline-block;
+  transform: translateX(-100px);
+  animation: slideInCart 1s ease-out forwards;
+}
+
+@keyframes slideInCart {
+  to {
+    transform: translateX(0);
+  }
+}
+
+.brand span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0) scale(0.5);
+  animation: emergeFromCart 0.6s ease-out forwards;
+}
+
+/* Animação para simular que as letras saem de dentro do carrinho */
+@keyframes emergeFromCart {
+  0% {
+    transform: translate(-20px, 20px) scale(0.2);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(0, -10px) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Delay progressivo para cada letra */
+.brand span:nth-child(1) { animation-delay: 1.0s; }
+.brand span:nth-child(2) { animation-delay: 1.1s; }
+.brand span:nth-child(3) { animation-delay: 1.2s; }
+.brand span:nth-child(4) { animation-delay: 1.3s; }
+.brand span:nth-child(5) { animation-delay: 1.4s; }
+.brand span:nth-child(6) { animation-delay: 1.5s; }
+.brand span:nth-child(7) { animation-delay: 1.6s; }
+.brand span:nth-child(8) { animation-delay: 1.7s; }
+.brand span:nth-child(9) { animation-delay: 1.8s; }
+.brand span:nth-child(10) { animation-delay: 1.9s; }
+
+
+/* ─── Modal Boas-vindas ─────────────────────── */
+#welcome-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#welcome-box {
+  background: #1f3b73;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  max-width: 90%;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+#welcome-box h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+#welcome-box p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+#welcome-box input {
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding: 10px;
+  border: 2px solid #ff8c00;
+  border-radius: 6px;
+  background-color: transparent;
+  color: white;
+}
+
+#welcome-box button {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  background-color: #005bff;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#welcome-box button:hover {
+  background-color: #0040c1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Impede scroll no fundo enquanto modal visível */
+body.modal-open {
+  overflow: hidden;
+}
+
+
+
+/* header fica sticky no topo */
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #1c2a48; /* azul escuro */
+  color: #ffffff;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border-bottom: 2px solid #0d1729; /* reforço visual */
+}
+
+
+#welcome-box button, .search-box button {background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%)}
+#welcome-box button, .search-box button {
+  max-width: 300px;
+  padding: .6rem 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+  box-shadow: 0 0 20px #eee;
+  display: block;
+
+  flex: 1;
+  
+  
+  border: none;
+  border-radius: 4px;
+}
+
+#welcome-box button, .search-box button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+         
+
+/* conteúdo interno para centralizar e limitar largura */
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+/* Título */
+.header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+/* quando rolar pra baixo, o header some pra cima */
+.header--hidden {
+  transform: translateY(-100%);
+}
+
+/* resto do seu estilo de busca e grid */
+.search-box {
+  display: flex;
+  gap: .5rem;
+  
+}
+
+.search-box input{
+  width: 100%;
+  font-size: 1rem;
+  
+  border: 2px solid #ff8c00;
+  border-radius: 6px;
+  background-color: transparent;
+  color: white;
+}
+
+
+/* animação simples nos cards */
+.card {
+  width: 200px;
+  flex: 0 0 240px;
+  background: white;
+  border: 2px solid #ff8c00; /* neon alaranjado */
+  border-radius: 12px;
+  box-shadow: 0 0 10px #ff8c00;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  opacity: 0;
+  padding-top: 3rem;
+  transform: translateY(20px);
+  animation: fadeInUp 0.4s forwards;
+}
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+.card:nth-child(6) { animation-delay: 0.6s; }
+.card:nth-child(7) { animation-delay: 0.7s; }
+.card:nth-child(8) { animation-delay: 0.8s; }
+/* ... ajuste conforme o número de colunas ... */
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #ffa500;
+}
+
+.modal {
+  display: none; /* será trocado para flex no JS */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #ff8c00;
+  text-align: center;
+  animation: modalFadeIn 0.3s ease;
+  position: relative;
+}
+.modal-content img {
+  max-width: 100%;
+  max-height: 300px;
+  margin-bottom: 1rem;
+}
+
+.modal-content a {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #ff8c00;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+.modal-content a:hover {
+  background-color: #ff7000;
+}
+
+.close {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #555;
+}
+
+@keyframes modalFadeIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content {
+  background: white;
+  color: black;         /* 👈 Isso resolve */
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.modal-content h2,
+.modal-content p,
+.modal-content a {
+  color: black;         /* 👈 Garante visibilidade */
+}
+
+#modal-preco {
+  font-size: 1.8rem;     /* 👈 aumenta o tamanho */
+  font-weight: bold;     /* 👈 deixa em negrito */
+  color: #ff8c00;        /* 👈 cor laranja destacada */
+  margin-top: 1rem;      /* 👈 espaçamento extra */
+}
+
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+#modal-nome {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+  word-wrap: break-word;
+}
+
+#modal-preco {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff8c00;
+  margin-top: 1rem;
+}
+
+#modal-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.2rem;
+  background-color: #ff8c00;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+#modal-link:hover {
+  background-color: #e67600;
+}
+.modal-content a {
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block;
+  margin-top: 1rem;
+  background: #ff8c00;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+/* ajuste do main para não ficar atrás do header */
+
+
+.header h1 {
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.grid-container {
+  padding-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  flex: 1;
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover; /* recorta proporcionalmente, sem distorcer */
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  transition: transform 0.3s ease;
+}
+.card:hover img {
+  transform: scale(1.03); /* pequeno zoom ao passar o mouse */
+}
+.card-content {
+  padding: 22px;
+  flex: 1;
+  margin: 5px;
+}
+
+.card-content h2 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+
+  /* removemos limites rígidos */
+  /* height: 2.4rem; */
+  /* overflow: hidden; */
+
+  /* nova configuração para quebra e elipse */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;       /* exibe até 2 linhas */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  line-height: 1.2em;          /* 2 linhas x 1.2em */
+  color: #0d0f1a;
+}
+
+.card-content p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #e74c3c;
+  margin-bottom: 0.8rem;
+}
+
+.card-content a {
+  text-decoration: none;
+  color: #4a90e2;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.card-content a:hover {
+  color: #357ab8;
+}
+
+.footer {
+  background: #fff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.85rem;
+}
+.categoria {
+  margin-top: 40px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+.categoria:hover {
+  transform: translateY(-5px);
+}
+.categoria:not(:last-child)::after {
+  content: '';
+  display: block;
+  height: 1px;
+  background: #b9a8a8;
+  margin: 2rem auto 0;
+  width: 95%;
+}
+.categoria h2 {
+  margin-left: 16px;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #1964bb;
+  padding-left: 0.8rem;
+  color: #333;
+}
+#area-categorias {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 4rem;
+  margin-top: 4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#area-produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+}
+.botao-categoria {
+  background-color: #0d1117; /* tom escuro para combinar com o fundo */
+  color: #ff8c00; /* laranja vibrante */
+  border: 2px solid #ff8c00;
+  padding: 10px 20px;
+  margin: 14px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+  box-shadow: 0 0 10px #ff8c00aa;
+}
+
+.botao-categoria:hover {
+  background-color: #ff8c00;
+  color: #0d1117;
+  box-shadow: 0 0 15px #ff8c00, 0 0 25px #ff8c00;
+  transform: translateY(-2px) scale(1.03);
+}
+
+.botao-categoria:focus {
+  outline: none;
+  box-shadow: 0 0 20px #ffaa33;
+}
+.botao-categoria {
+  background-color: #0d1117;
+  color: #ff8c00;
+  border: 2px solid #ff8c00;
+  padding: 10px 20px;
+  margin: 8px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
+  box-shadow: 0 0 10px #ff8c00aa;
+}
+
+.botao-categoria:hover {
+  background-color: #ff8c00;
+  color: #0d1117;
+  box-shadow: 0 0 15px #ff8c00, 0 0 25px #ff8c00;
+  transform: translateY(-2px) scale(1.03);
+}
+
+.botao-categoria.ativo {
+  background-color: #ff8c00;
+  color: #0d1117;
+  box-shadow: 0 0 20px #ff8c00, 0 0 35px #ff8c00;
+}
+.results-wrapper:active {
+  cursor: grabbing;
+}
+
+/* Container flex row para cards */
+.results-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  user-select: none;
+  
+}
+.scroll-hint {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #888;
+   animation: bounce 1s infinite;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.7;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(-50%) translateX(0); }
+  50% { transform: translateY(-50%) translateX(-8px); }
+}
+
+/* Oculta barra de rolagem e evita mãozinha */
+.results-wrapper {
+  margin-top: 40px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 1rem 2rem;
+  cursor: default;
+  scrollbar-width: none;         /* Firefox */
+  -ms-overflow-style: none;      /* IE/Edge */
+  position: relative;
+  user-select: none;           /* Impede seleção com mouse */
+  -webkit-user-select: none;   /* Safari */
+  -ms-user-select: none;
+}
+.results-wrapper img {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.results-wrapper::-webkit-scrollbar {
+  display: none;                /* Chrome/Safari */
+}
+
+
+/* RESPONSIVO PARA TABLETS E CELULARES */
+
+/* Telas até 1024px: tablets */
+@media (max-width: 1024px) {
+  .header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .search-box {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .search-box input {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .results-wrapper {
+    padding: 1rem;
+  }
+
+  .grid-container {
+    padding: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+/* Telas até 768px: celulares maiores */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 1.4rem;
+  }
+
+  .card-content h2 {
+    font-size: 0.95rem;
+    max-height: 2.2em;
+  }
+
+  .card-content p {
+    font-size: 1.4rem;
+  }
+
+  .results-wrapper {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    padding: 1rem;
+  }
+
+  .card {
+    padding-top: 4.5rem;
+  }
+}
+
+/* Telas muito pequenas (até 480px) */
+@media (max-width: 480px) {
+  .header-content {
+    padding: 0.5rem 1rem;
+  }
+
+  .search-box button {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .card-content h2 {
+    -webkit-line-clamp: 3;
+    max-height: 3.6em;
+  }
+
+  .card-content p {
+    font-size: 1.2rem;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+}
+.modal-content {
+    width: 95%;
+    padding: 1rem;
+  }
+
+  #modal-nome {
+    font-size: 1rem;
+  }
+
+  #modal-preco {
+    font-size: 1.5rem;
+  }
+
+  #modal-link {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
