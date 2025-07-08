@@ -19,14 +19,13 @@ from security_config import (configurar_talisman, configurar_limiter, verificar_
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 # ───────────── CONFIGURAÇÃO INICIAL ─────────────
-
+backend = Flask("backend")
 load_dotenv()
 EMAIL = os.getenv("EMAIL")
 SENHA = os.getenv("SENHA")
 
 ##TOKEN = "meu-token-secreto-123"
 autenticado = False  # Só vira True quando login for válido
-app = Flask(__name__)
 
 configurar_talisman(app)
 configurar_limiter(app)
@@ -390,14 +389,7 @@ def atualizar_links_produtos(resultados):
 
     return resultados
 
-if __name__ == "__main__":
+@app.route('/ping')
+def ping():
+    return "pong", 200
     
-    @app.route('/ping')
-    def ping():
-        return "pong", 200
-    
-    print("Iniciando backend...")
-    login()
-    print("Login finalizado, iniciando Flask app...")
-    port = int(os.environ.get("PORT", 5001))
-    app.run(host="0.0.0.0", port=port)
