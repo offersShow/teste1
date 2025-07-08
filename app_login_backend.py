@@ -211,7 +211,7 @@ def expandir_termo(termo_normalizado):
             expandidos.add(palavra)
     return list(expandidos)
 
-@app.route("/buscar_autenticado", methods=["POST"])
+@backend.route("/buscar_autenticado", methods=["POST"])
 @limiter.limit("40 per minute")  # limite de 5 chamadas/minuto por IP
 def buscar_autenticado():
     global driver, autenticado
@@ -389,7 +389,7 @@ def atualizar_links_produtos(resultados):
 
     return resultados
 
-@app.route('/ping')
+@backend.route('/ping')
 def ping():
     return "pong", 200
     
