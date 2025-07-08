@@ -45,7 +45,7 @@ def esperar_codigo_2fa(timeout=180):
     print("[🔐] Aguardando código 2FA via Telegram...")
     for _ in range(timeout):
         try:
-            r = requests.get("https://127.0.0.1:5050/obter_codigo")
+            r = requests.get("https://0.0.0.0:5050/obter_codigo")
             if r.ok:
                 codigo = r.json().get("codigo")
                 if codigo:
@@ -80,7 +80,7 @@ def iniciar_servicos_auxiliares():
 
     for _ in range(20):
         try:
-            if requests.get("https://127.0.0.1:5050/ping").status_code == 200:
+            if requests.get("https://0.0.0.0:5050/ping").status_code == 200:
                 print("[✅] Servidor 2FA pronto.")
                 return telegram, servidor
         except:
