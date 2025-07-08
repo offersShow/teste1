@@ -399,4 +399,4 @@ if __name__ == "__main__":
     print("Iniciando backend...")
     login()
     print("Login finalizado, iniciando Flask app...")
-    app.run(host="127.0.0.1", port=5001, ssl_context=('cert.pem', 'key.pem'))
+    app.run(host="127.0.0.1", port=5001)
