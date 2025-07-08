@@ -84,10 +84,6 @@ def salvar_no_cache(termo, resultados):
         with pd.ExcelWriter(ARQUIVO_CACHE, engine="openpyxl") as writer:
             df_novo.to_excel(writer, sheet_name=termo, index=False)
 
-@front.route("/")
-def home():
-    return "Olá Render!"
-
 CORS(front)
 # Aplica headers de segurança e limitador
 configurar_talisman(front)
