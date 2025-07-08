@@ -14,7 +14,7 @@ TOKEN_TTL_SECONDS = 3600  # 1 hora
 SELF = ["'self'"]
 
 # Substitua pelo domínio correto do seu backend no Render
-RENDER_URL = "https://meu-backend-flask-posa.onrender.com"
+RENDER_URL = "https://meu-backend-flask-917g.onrender.com"
 
 # Substitua pelo domínio onde está hospedado seu frontend (GitHub Pages)
 GITHUB_PAGES_URL = "https://offersshow.github.io/teste1/"
