@@ -15,6 +15,8 @@ import difflib
 from security_config import configurar_talisman, configurar_limiter, verificar_token, sanitizar
 from flask_cors import CORS
 
+front = Flask("front")
+
 ARQUIVO_CACHE = "cache_buscas.xlsx"
 
 def limpar_nome_sheet(nome):
@@ -82,44 +84,6 @@ def salvar_no_cache(termo, resultados):
         with pd.ExcelWriter(ARQUIVO_CACHE, engine="openpyxl") as writer:
             df_novo.to_excel(writer, sheet_name=termo, index=False)
 
-# ─── 1) Inicia o backend em subprocesso ─────────────────────────────────
-def print_stream(stream, prefix="[backend]"):
-    for line in iter(stream.readline, ''):  # já em texto
-        print(f"{prefix} {line.rstrip()}")
-
-backend_proc = subprocess.Popen(
-    ['python', 'app_login_backend.py'],
-    stdout=subprocess.PIPE,
-    stderr=subprocess.PIPE,
-    text=True,  # <---- ativa modo texto e evita problemas com buffer
-    encoding='utf-8',  # ou 'utf-8-sig' ou 'cp1252' se necessário
-    errors='replace'  # evita UnicodeDecodeError
-)
-
-# Threads para log em tempo real
-threading.Thread(target=print_stream, args=(backend_proc.stdout, "[stdout]"), daemon=True).start()
-threading.Thread(target=print_stream, args=(backend_proc.stderr, "[stderr]"), daemon=True).start()
-
-# ─── 2) Polling no /ping até receber OK ──────────────────────────────────
-timeout = 30  # segundos
-interval = 1  # intervalo entre tentativas
-start = time.time()
-
-while True:
-    try:
-        r = requests.get("https://0.0.0.0:5001/ping", timeout=1)
-        if r.status_code == 200:
-            print("[✅] Backend está pronto!")
-            break
-    except requests.exceptions.RequestException:
-        pass
-
-    if time.time() - start > timeout:
-        backend_proc.terminate()
-        raise RuntimeError("⏰ Timeout esperando o backend subir na porta 5001.")
-    time.sleep(interval)
-
-app = Flask(__name__)
 @app.route("/")
 def home():
     return "Olá Render!"
@@ -253,7 +217,3 @@ def ultima_busca():
     
     cache = buscar_em_cache(termo)
     return jsonify({"termo": termo, "dados": cache or []})
-    
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
