@@ -26,5 +26,5 @@ if __name__ == '__main__':
     @app.route('/ping')
     def ping():
         return "pong", 200
-    app.run(host='127.0.0.1', port=5050, ssl_context=('cert.pem', 'key.pem'))
+    app.run(host='127.0.0.1', port=5050)
 
