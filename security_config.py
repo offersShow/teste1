@@ -13,16 +13,46 @@ TOKEN_TTL_SECONDS = 3600  # 1 hora
 
 SELF = ["'self'"]
 
+# Substitua pelo domínio correto do seu backend no Render
+RENDER_URL = "https://meu-site-cxqp.onrender.com"
+
+# Substitua pelo domínio onde está hospedado seu frontend (GitHub Pages)
+GITHUB_PAGES_URL = "https://offersshow.github.io"
+
 csp = {
     "default-src": SELF,
+    "connect-src": SELF + [
+        RENDER_URL,
+        GITHUB_PAGES_URL,
+        "https://gc.kis.v2.scr.kaspersky-labs.com",
+        "wss://gc.kis.v2.scr.kaspersky-labs.com"
+    ],
+    "style-src": SELF + [
+        "https://fonts.googleapis.com",
+        "https://gc.kis.v2.scr.kaspersky-labs.com"
+    ],
+    "style-src-elem": SELF + [
+        "https://fonts.googleapis.com"
+    ],
+    "font-src": SELF + [
+        "https://fonts.gstatic.com"
+    ],
     "connect-src": SELF,
     "style-src": SELF,
     "style-src-elem": SELF,
     "img-src": SELF + [
         "data:",
         "https://images-na.ssl-images-amazon.com",
+        "https://m.media-amazon.com",
+        "https://gc.kis.v2.scr.kaspersky-labs.com"
+    ],
+    "script-src": SELF + [
+        "https://gc.kis.v2.scr.kaspersky-labs.com"
         "https://m.media-amazon.com"
     ],
+    "frame-src": SELF + [
+        "https://gc.kis.v2.scr.kaspersky-labs.com"
+    ]
     "script-src": SELF,
 }
 
