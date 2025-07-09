@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: meu-backend-flask
+    name: meu-site
     env: python
     buildCommand: ""
     startCommand: python run.py
