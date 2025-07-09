@@ -21,36 +21,36 @@ GITHUB_PAGES_URL = "https://offersshow.github.io"
 
 csp = {
     "default-src": SELF,
-    "connect-src": SELF + [
+    "connect-src": [SELF] + [
         RENDER_URL,
         GITHUB_PAGES_URL,
         "https://gc.kis.v2.scr.kaspersky-labs.com",
         "wss://gc.kis.v2.scr.kaspersky-labs.com"
     ],
-    "style-src": SELF + [
+    "style-src": [SELF] + [
         "https://fonts.googleapis.com",
         "https://gc.kis.v2.scr.kaspersky-labs.com"
     ],
-    "style-src-elem": SELF + [
+    "style-src-elem": [SELF] + [
         "https://fonts.googleapis.com"
     ],
-    "font-src": SELF + [
+    "font-src": [SELF] + [
         "https://fonts.gstatic.com"
     ],
     "connect-src": SELF,
     "style-src": SELF,
     "style-src-elem": SELF,
-    "img-src": SELF + [
+    "img-src": [SELF] + [
         "data:",
         "https://images-na.ssl-images-amazon.com",
         "https://m.media-amazon.com",
         "https://gc.kis.v2.scr.kaspersky-labs.com"
     ],
-    "script-src": SELF + [
+    "script-src": [SELF] + [
         "https://gc.kis.v2.scr.kaspersky-labs.com"
         "https://m.media-amazon.com"
     ],
-    "frame-src": SELF + [
+    "frame-src": [SELF] + [
         "https://gc.kis.v2.scr.kaspersky-labs.com"
     ]
     "script-src": SELF,
