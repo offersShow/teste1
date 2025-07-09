@@ -1,9 +1,11 @@
 import requests
 from telegram import Update
 from telegram.ext import ApplicationBuilder, MessageHandler, filters, ContextTypes
+from dotenv import load_dotenv
 
 # Configurações do bot
-BOT_TOKEN = '7373859673:AAGjTN6-RB_7iz1O-mAlFoXVgkPPTuDRF2s'
+load_dotenv()
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 USER_ID = 8038387449
 ENDPOINT_CODIGO = 'https://127.0.0.1:5050/receber_codigo'
 
