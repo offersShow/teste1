@@ -19,7 +19,7 @@ from security_config import (configurar_talisman, configurar_limiter, verificar_
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 # ───────────── CONFIGURAÇÃO INICIAL ─────────────
-backend = Flask("backend")
+backend = Flask(__name__)
 load_dotenv()
 EMAIL = os.getenv("EMAIL")
 SENHA = os.getenv("SENHA")
