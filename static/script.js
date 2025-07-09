@@ -188,7 +188,7 @@ function initDragScroll(slider) {
 // Permite acionar a busca também ao pressionar Enter
 document.addEventListener("DOMContentLoaded", () => {
   // Requisição para obter a última busca via sessão
-  fetch("/api/ultima_busca")
+  fetch("/ultima_busca")
     .then(res => res.json())
     .then(({ termo, dados }) => {
       if (!termo || !dados || !dados.length) return;
@@ -336,7 +336,7 @@ const frases = [
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("/api/promocoes")
+  fetch("/promocoes")
     .then(res => res.json())
     .then(promo_cache => {
       const categoriasDiv = document.getElementById("area-categorias");
