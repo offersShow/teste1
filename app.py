@@ -115,7 +115,7 @@ def buscar_amazon_autenticado(termo):
         resp = requests.post(
             "https://meu-site-cxqp.onrender.com/buscar_autenticado",
             json={"termo": termo},
-            headers={"Authorization": f"Bearer {token}"}
+            #headers={"Authorization": f"Bearer {token}"}
         )
         if resp.status_code == 200:
             if not cache_ready_event.is_set():
