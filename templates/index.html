@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Buscador de Produtos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Proteções básicas -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https:;">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+
+  <link rel="icon" href="./static/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./static/styles.css">
+</head>
+<body>
+
+  <header class="header" id="site-header">
+    <div class="header-content">
+      <h1 class="logo">
+        <span class="cart" id="cart">🛒</span>
+        <span class="brand" id="brand">
+          <span>o</span><span>f</span><span>f</span><span>e</span><span>r</span><span>s</span>
+          <span>S</span><span>h</span><span>o</span><span>w</span>
+        </span>
+      </h1>
+      <div class="search-box">
+        <input type="text" id="termo" placeholder="" maxlength="100">
+        <button id="meuBotao">Buscar</button>
+      </div>
+    </div>
+  </header>
+  <!-- Resultados de busca ficam aqui -->
+  <!-- Container de resultados agora scroll-horizontal -->
+  <section class="results-wrapper">
+    <div id="resultados" class="results-container"></div>
+  </section>
+  <div id="area-categorias" class="categorias-container">
+    <!-- Botões de categoria serão adicionados via JS -->
+  </div>
+
+  <div id="area-produtos" class="produtos-container">
+    <!-- Cards dos produtos de uma categoria aparecerão aqui -->
+  </div>
+
+  <div id="welcome-modal">
+    <div id="welcome-box">
+      <h1>Bem-vindo!</h1>
+      <p>Faça aqui sua pesquisa personalizada:</p>
+      <input type="text" id="termo-inicial" placeholder="Ex: notebook gamer barato" maxlength="100">
+      <button id="meuBotao2">Buscar</button>
+    </div>
+  </div>
+
+
+  <footer class="footer">
+    <p>Desenvolvido por você • Dados da Amazon</p>
+  </footer>
+
+<script
+  src="https://offersshow.github.io/teste1/static/script.js"
+></script>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img id="modal-imagem" src="" alt="Produto" />
+    <h2 id="modal-nome"></h2>
+    <p id="modal-preco"></p>
+    <a id="modal-link" href="#" target="_blank">Ver na Amazon</a>
+  </div>
+</div>
+
+</body>
+</html>
