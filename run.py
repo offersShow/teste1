@@ -14,5 +14,6 @@ application = DispatcherMiddleware(front_app, {
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
+    print(f"Rodando na porta {port}...")
     # 'application' é o WSGI que engloba os dois apps
     run_simple('0.0.0.0', port, application, use_reloader=True)
