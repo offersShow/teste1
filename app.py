@@ -16,6 +16,11 @@ from security_config import configurar_talisman, configurar_limiter, verificar_t
 from flask_cors import CORS
 
 front = Flask(__name__, static_folder="static", template_folder=".")
+CORS(front)
+# Aplica headers de segurança e limitador
+configurar_talisman(front)
+limiter = configurar_limiter(front)
+
 front.secret_key = os.environ.get("SECRET_KEY", "chave-secreta-segura")
 ARQUIVO_CACHE = "cache_buscas.xlsx"
 
@@ -84,10 +89,6 @@ def salvar_no_cache(termo, resultados):
         with pd.ExcelWriter(ARQUIVO_CACHE, engine="openpyxl") as writer:
             df_novo.to_excel(writer, sheet_name=termo, index=False)
 
-CORS(front)
-# Aplica headers de segurança e limitador
-configurar_talisman(front)
-limiter = configurar_limiter(front)
 
 # ─── Configurações do ChromeDriver ────────────────────────────────────────
 chrome_options = Options()
