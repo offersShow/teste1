@@ -13,10 +13,10 @@ import os
 import re
 import difflib
 from security_config import configurar_talisman, configurar_limiter, verificar_token, sanitizar
-from flask_cors import CORS
+
 
 front = Flask(__name__, static_folder="static", template_folder=".")
-CORS(front)
+
 # Aplica headers de segurança e limitador
 configurar_talisman(front)
 limiter = configurar_limiter(front)
