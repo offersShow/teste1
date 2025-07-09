@@ -12,7 +12,7 @@ import io
 import psutil
 import unicodedata
 import re
-from flask_cors import CORS
+
 from urllib.parse import quote_plus
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from selenium.webdriver.common.action_chains import ActionChains
@@ -21,7 +21,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='repla
 sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='replace')
 # ───────────── CONFIGURAÇÃO INICIAL ─────────────
 backend = Flask(__name__)
-CORS(backend)
+
 load_dotenv()
 EMAIL = os.getenv("EMAIL")
 SENHA = os.getenv("SENHA")
