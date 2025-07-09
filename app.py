@@ -113,9 +113,9 @@ cache_lock = threading.Lock()
 def buscar_amazon_autenticado(termo):
     try:
         resp = requests.post(
-            "https://0.0.0.0:5001/buscar_autenticado",
+            "https://meu-backend-flask-917g.onrender.com/api/buscar_autenticado",
             json={"termo": termo},
-            ##headers={"Authorization": "Bearer meu-token-secreto-123"}
+            headers={"Authorization": "Bearer seu-token-aqui"}
         )
         if resp.status_code == 200:
             if not cache_ready_event.is_set():
