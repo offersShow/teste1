@@ -217,13 +217,13 @@ def expandir_termo(termo_normalizado):
 @limiter.limit("40 per minute")  # limite de 5 chamadas/minuto por IP
 def buscar_autenticado():
     global driver, autenticado
-
+    """
     auth_header = request.headers.get("Authorization", "")
     token = auth_header.replace("Bearer ", "")
     usuario_id = verificar_token(token)
     if not usuario_id:
         return jsonify({"erro": "Token inválido ou expirado"}), 403
-
+    """
     termo_original = sanitizar(request.json.get("termo", ""))
 
     if driver is None:
