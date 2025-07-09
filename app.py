@@ -15,7 +15,7 @@ import difflib
 from security_config import configurar_talisman, configurar_limiter, verificar_token, sanitizar
 
 
-front = Flask(__name__, static_folder="static", template_folder=".")
+front = Flask(__name__, static_folder="static", template_folder="templates")
 
 # Aplica headers de segurança e limitador
 configurar_talisman(front)
