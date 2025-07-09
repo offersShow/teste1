@@ -12,7 +12,7 @@ import pandas as pd
 import os
 import re
 import difflib
-from security_config import configurar_talisman, configurar_limiter, verificar_token, sanitizar
+from security_config import configurar_talisman, configurar_limiter, verificar_token, sanitizar, gerar_token
 
 
 front = Flask(__name__, static_folder="static", template_folder="templates")
@@ -110,13 +110,13 @@ cache_ready_event = threading.Event()
 PROMO_TERMS = ['Celulares', 'Tablets',  'Notebooks', 'Eletrônicos', 'Fones de ouvido']
 promo_cache = {}
 cache_lock = threading.Lock()
-
+token = gerar_token("usuario_exemplo")  # Use um ID real aqui
 def buscar_amazon_autenticado(termo):
     try:
         resp = requests.post(
             "https://meu-site-cxqp.onrender.com/buscar_autenticado",
             json={"termo": termo},
-            headers={"Authorization": "Bearer seu-token-aqui"}
+            headers={"Authorization": f"Bearer {token}"}
         )
         if resp.status_code == 200:
             if not cache_ready_event.is_set():
