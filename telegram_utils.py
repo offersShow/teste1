@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 
 # Configurações do bot
 load_dotenv()
+
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 USER_ID = 8038387449
 ENDPOINT_CODIGO = 'https://127.0.0.1:5050/receber_codigo'
