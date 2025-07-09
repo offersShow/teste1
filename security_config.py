@@ -17,7 +17,7 @@ SELF = ["'self'"]
 RENDER_URL = "https://meu-backend-flask-917g.onrender.com"
 
 # Substitua pelo domínio onde está hospedado seu frontend (GitHub Pages)
-GITHUB_PAGES_URL = "https://offersshow.github.io/teste1/"
+GITHUB_PAGES_URL = "https://offersshow.github.io"
 
 csp = {
     "default-src": SELF,
