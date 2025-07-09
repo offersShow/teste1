@@ -55,7 +55,7 @@ function buscar() {
   const container = document.getElementById("resultados");
   container.innerHTML = "<p class='loading'>Buscando...</p>";
 
-  fetch('https://meu-backend-flask-917g.onrender.com/buscar', {
+  fetch('/api/buscar', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ termo })
@@ -188,7 +188,7 @@ function initDragScroll(slider) {
 // Permite acionar a busca também ao pressionar Enter
 document.addEventListener("DOMContentLoaded", () => {
   // Requisição para obter a última busca via sessão
-  fetch("https://meu-backend-flask-917g.onrender.com/ultima_busca")
+  fetch("/api/ultima_busca")
     .then(res => res.json())
     .then(({ termo, dados }) => {
       if (!termo || !dados || !dados.length) return;
@@ -336,7 +336,7 @@ const frases = [
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("https://meu-backend-flask-917g.onrender.com/promocoes")
+  fetch("/api/promocoes")
     .then(res => res.json())
     .then(promo_cache => {
       const categoriasDiv = document.getElementById("area-categorias");
